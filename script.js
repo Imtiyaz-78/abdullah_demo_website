@@ -45,3 +45,50 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = scrollTop;
 });
+
+let prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+    let currentScrollPos = window.pageYOffset;
+    const navbar = document.querySelector('.navbar');
+
+    if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0";  // Show navbar
+    } else {
+        navbar.style.top = "-80px";  // Hide navbar (adjust this value if needed)
+    }
+    prevScrollpos = currentScrollPos;
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+});
+
+function sendToWhatsApp() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    const whatsappNumber = '919871478635';
+
+    const formattedMessage = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
+    const encodedMessage = encodeURIComponent(formattedMessage);
+
+    const whatsappAppUrl = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
+
+    const whatsappWebUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+     window.location.href = whatsappAppUrl;
+
+     setTimeout(() => {
+        window.open(whatsappWebUrl, '_blank');
+    }, 1000);
+}

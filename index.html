@@ -3,116 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Tile Catalog</title>
+    <title>Marble Finish Polishing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f7fa;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.634);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgb(0, 0, 0);
+            padding: 0.5rem 0;
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #fff !important;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #fff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -1;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+            padding-top: 40vh;
+        }
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+            transition: all 0.3s ease;
+        }
+        .hero-title:hover {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .service-card {
+            transition: all 0.3s ease;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .service-card img {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover img {
+            transform: scale(1.1);
+        }
+        .service-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover .service-card-content {
+            transform: translateY(0);
+        }
+        .cta {
+            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+        }
+        footer {
+            background: black;
+            color: #fff;
+            padding: 3rem 0;
+        }
+        .social-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #fad0c4;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: #667eea;
+            transition: all 0.3s ease;
+        }
+        .section-title:hover::after {
+            width: 100%;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .social-icon {
+    text-decoration: none; /* Removes underline */
+}
+
+.social-icon:hover {
+    text-decoration: none; /* Ensures no underline on hover */
+}
+    </style>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-gem me-2"></i>Marble Finish Polishing
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <head>
-        <!-- Include Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-      </head>
-    <header>
-        <nav class="container">
-            <div class="logo">Luxury Tiles</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#featured">Featured</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-        </nav>
+    <header id="home" class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="MFPV5.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Transform Your Marble</h1>
+            <p class="lead mb-4 animated-text" style="animation-delay: 1s;">Expert marble polishing services for a timeless shine</p>
+            <a href="#contact" class="btn btn-light btn-lg me-3 animated-text" style="animation-delay: 1.5s;">Get a Quote</a>
+            <a href="#services" class="btn btn-outline-light btn-lg animated-text" style="animation-delay: 1.5s;">Our Services</a>
+        </div>
     </header>
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>Elevate Your Space</h1>
-                <p>Discover our exquisite collection of luxury tiles</p>
-                <a href="#featured" class="btn">Explore Collection</a>
-            </div>
-        </section>
-        <section id="featured" class="featured-section">
-            <div class="container">
-                <h2>Featured Products</h2>
-                <div class="featured-grid">
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80');"></div>
-                        <div class="product-info">
-                            <h3>Marble Elegance</h3>
-                            <p>Luxurious marble-inspired tiles</p>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1604709177225-055f99402ea3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
-                        <div class="product-info">
-                            <h3>Rustic Wood</h3>
-                            <p>Wood-look tiles for a cozy feel</p>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80');"></div>
-                        <div class="product-info">
-                            <h3>Modern Concrete</h3>
-                            <p>Sleek concrete-inspired tiles</p>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80');"></div>
-                        <div class="product-info">
-                            <h3>Vintage Patterns</h3>
-                            <p>Intricate designs for character</p>
+
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 section-title">Our Premium Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card h-100">
+                        <img style="height: 534px !important;" src="MFP1" class="card-img-top" alt="Marble Cleaning">
+                        <div class="service-card-content">
+                            <h5 class="card-title">Marble Polishing</h5>
+                            <p class="card-text">Restore the natural beauty of your marble surfaces with our expert polishing techniques. We use state-of-the-art equipment and diamond abrasives to achieve a mirror-like finish that will make your marble shine like new.</p>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="service-card h-100">
+                        <img style="height: 534px !important;" src="MFP2" class="card-img-top" alt="Marble Cleaning">
+                        <div class="service-card-content">
+                            <h5 class="card-title">Marble Cleaning</h5>
+                            <p class="card-text">Deep clean your marble to remove stains, dirt, and grime, revealing its true beauty. Our specialized cleaning solutions are gentle yet effective, ensuring your marble is thoroughly cleaned without causing any damage to the delicate surface.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card h-100">
+                        <img style="height: 534px !important;" src="MFP3" class="card-img-top" alt="Marble Cleaning">
+                        <div class="service-card-content">
+                            <h5 class="card-title">Marble Sealing</h5>
+                            <p class="card-text">Protect your marble from stains and damage with our professional sealing services. Our high-quality sealants penetrate deep into the marble, creating an invisible barrier that repels liquids and prevents etching, ensuring your marble stays beautiful for years to come.</p>
+                        </div>
+                    </div>
+                </div>                </div>
             </div>
-        </section>
-    </main>
+      
+            
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>We offer a wide range of high-quality tiles for your home and commercial spaces.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#featured">Featured</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: info@luxurytiles.com</p>
-                <p>Phone: (123) 456-7890</p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="#" aria-label="Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 bg-light parallax" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bWFyYmxlLXRleHR1cmV8fHx8fHwxNjgzMTIyNDIy&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080');">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 bg-white p-5 rounded shadow">
+                    <h2 class="mb-4 section-title">About Marble Finish Polishing</h2>
+                    <p class="lead">With over 12 years of experience, we are the leading experts in marble polishing and restoration.</p>
+                    <p>Our team of skilled professionals uses state-of-the-art techniques and equipment to bring out the natural beauty of your marble surfaces. We take pride in our attention to detail and commitment to customer satisfaction.</p>
+                    <p>At Marble Finish Polishing, we understand that each marble surface is unique and requires specialized care. That's why we offer customized solutions tailored to your specific needs, ensuring the best possible results for your marble floors, countertops, and other surfaces.</p>
+                    <a href="#contact" class="btn btn-primary mt-3">Learn More</a>
+                </div>
+                <div class="col-md-6 p-5 rounded shadow">
+                    <img style="height: 450px; width: 700px;" src="MFP5" alt="Marble Polishing Expert" class="img-fluid rounded shadow-lg">
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 section-title">Our Work Gallery</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG1.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG2.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG3.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG4.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG5.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG6.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG7.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP_Gallery/MFPG8.jpeg" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP1" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP2" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP3" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-md-4">
+                    <img src="MFP4" alt="Marble Floor" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-5 bg-light parallax" style="background-image: url('https://images.unsplash.com/photo-1517329782449-810562a4ec2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bWFyYmxlLXBhdHRlcm58fHx8fHwxNjgzMTIyNTAw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080');">
+        <div class="container">
+            <h2 style="color: white;" class="text-center mb-5 section-title">What Our Clients Say</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-lg">
+                        <div class="card-body">
+                            <p class="card-text">"Marble Finish Polishing transformed our old, dull marble floors into stunning, mirror-like surfaces. We couldn't be happier with the results!"</p>
+                            <p class="font-weight-bold mb-0">- Kashif Khurshid.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-lg">
+                        <div class="card-body">
+                            <p class="card-text">"The team at Marble Finish Polishing is professional, efficient, and truly skilled at what they do. Our kitchen countertops look brand new!"</p>
+                            <p class="font-weight-bold mb-0">- Md Abdullah.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-lg">
+                        <div class="card-body">
+                            <p class="card-text">"I highly recommend Marble Finish Polishing for their exceptional service and attention to detail. They brought our marble surfaces back to life!"</p>
+                            <p class="font-weight-bold mb-0">- Kamruddin Ansari.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 section-title">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="contactForm" class="shadow-lg p-5 bg-white rounded" onsubmit="sendToWhatsApp(); return false;">
+                        <div class="mb-3">
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" id="phone" class="form-control" placeholder="Your Phone">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <textarea id="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-lg w-100" style="color: white;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 20px; vertical-align: middle; margin-right: 5px;">
+                            Send Message
+                        </button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+       
+    </script>
+    
+
+    <footer class="py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Marble Finish Polishing. All Rights Reserved.</p>
+            <div class="mt-3">
+                <a href="https://www.facebook.com/md.firoz.108?mibextid=ZbWKwL" class="social-icon" style="color: #3b5998;" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/marble_finish_polishing?igsh=ZDFxc3Mxd21xdjF2" class="social-icon" style="color: #e1306c;" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:mohammadfiroz78662@yahoo.com" class="social-icon" style="color: #D14836;" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                </a>                
+                <a href="https://youtube.com/@marblefinishpolishing?si=kkrzOtkHsrJejSSm" class="social-icon" style="color: #FF0000;" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>                
+            </div>
+            <p  class="Developer"> &copy; Developed By <b>KAK Technology</b></p>
+
+        </div>
+    </footer>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 
 </body>
